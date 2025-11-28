@@ -50,3 +50,7 @@ node_modules/
 
 # Jetbrains
 .idea/
+
+# Serwist
+public/sw*
+public/swe-worker*

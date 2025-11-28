@@ -1,6 +1,6 @@
 import { defaultCache } from '@serwist/next/worker';
 import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
-import { NetworkFirst, Serwist } from 'serwist';
+import { Serwist } from 'serwist';
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -15,18 +15,7 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: [
-    // NetworkFirst for all page navigations (including dynamic routes)
-    {
-      matcher: ({ request }) => request.mode === 'navigate',
-      handler: new NetworkFirst({
-        cacheName: 'pages-cache',
-        networkTimeoutSeconds: 10,
-      }),
-    },
-    // Default caching strategies for other resources
-    ...defaultCache,
-  ],
+  runtimeCaching: defaultCache,
 });
 
 serwist.addEventListeners();

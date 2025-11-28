@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ServiceWorkerRegistration } from './components/ServiceWorkerRegistration';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -17,6 +18,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Widgets',
   description: 'Widgets app built with Next.js',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Widgets',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +39,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <ServiceWorkerRegistration />
         <Analytics />
         <SpeedInsights />
         <footer>

@@ -7,6 +7,7 @@ const withSerwist = withSerwistInit({
   // disable: process.env.NODE_ENV === 'development',
   cacheOnNavigation: true,
   reloadOnOnline: true,
+  register: true,
 });
 
 const nextConfig: NextConfig = {
